@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import { NavLink, Switch, Route, Redirect, useRouteMatch} from 'react-router-dom';
 import Cart from './Cart';
 import Products from './Products';
@@ -8,30 +9,17 @@ import Product from './Product';
 function Home() {
     return (
         <div className="Home">
-        <header className="Home-header">
-            <h1>The World's #1 E-Commerce Site</h1>
+            <header className="Home-header">
+                <h1>The World's #1 E-Commerce Site</h1>
+                    <nav>
+                        <NavLink exact to={`/home`}> Home </NavLink>
+                        <NavLink exact to={`/products`}> Products </NavLink>
+                        <NavLink exact to={`/cart`}> View Cart </NavLink>
+                    </nav>
+            </header>
             <p>
-            <nav>
-                <NavLink exact to={`/home`}>Home</NavLink>
-                <NavLink exact to={`/products`}>Products</NavLink>
-                <NavLink exact to={`/cart`}>View Cart</NavLink>
-            </nav>
+                View our products:
             </p>
-        </header>
-        <p>
-            View our products:
-        </p>
-        <Switch>
-            <Route exact path={`/home`} component={Home}>
-                <Home />
-            </Route>
-            <Route exact path={`/products`} component={Products}>
-                <Products />
-            </Route>
-            <Route exact path={`/cart`} component={Cart}>
-                <Cart/>
-            </Route>
-        </Switch>
         </div>
     );
 }

@@ -16,9 +16,9 @@ const Product = () => {
             <h1>Sale Item</h1>
             <p>
                 <nav>
-                <NavLink exact to={`/home`}>Home</NavLink>
-                <NavLink exact to={`/products`}>Products</NavLink>
-                <NavLink exact to={`/cart`}>View Cart</NavLink>
+                    <NavLink exact to={`/home`}> Home </NavLink>
+                    <NavLink exact to={`/products`}> Products </NavLink>
+                    <NavLink exact to={`/cart`}> View Cart </NavLink>
                 </nav>
             </p>
         </header>
@@ -26,17 +26,6 @@ const Product = () => {
         <p>
             Here is today's sale item:
         </p>
-        <Switch>
-            <Route exact path={`/home`} component={Home}>
-                <Home />
-            </Route>
-            <Route exact path={`/products`} component={Products}>
-                <Products />
-            </Route>
-            <Route exact path={`/cart`} component={Cart}>
-                <Cart/>
-            </Route>
-        </Switch>
         </>
     );
 }
