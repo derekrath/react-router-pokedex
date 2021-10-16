@@ -12,42 +12,48 @@ import { useState, useEffect } from "react";
 //var pokemonArray = React.createContext();
 
 function App() {
-  const [pokeList, setPokeList] = useState(null);
+  // const [pokeList, setPokeList] = useState(null);
 
-  useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=10")
+  // useEffect(() => {
+  // async function getPokemonSubset() {
+    let pokeList = [];
+    for (let i=1; i < 11; i++){
+      fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-        setPokeList(data);
+        pokeList.push(data);
+        return pokeList;
       });
-  }, []);
+      // setPokeList(pokeList);
+    }
+    console.log(`pokeList: `, pokeList)
 
-  // pokemonArray = pokeList;
-  // console.log("Pokemon array:", pokemonArray);
+    let pokeList2 = [];
+    for (let j=1; j < 152; j++){
+      fetch(`https://pokeapi.co/api/v2/pokemon/${j}`)
+      .then((res2) => {
+        return res2.json();
+      })
+      .then((data2) => {
+        pokeList2.push(data2);
+        return pokeList2;
+      });
+      // setPokeList(pokeList);
+    }
+    // console.log(`pokeList:`, pokeList)
+    // return pokeList;
+  // };
+  // getPokemonSubset();
+  // }, []);
 
-  // is this the best place for this array? possibly createContext?
-  let favArray = [
-    {
-      // label: "San Francisco – Oakland Bay Bridge, United States",
-      // imgPath:
-      //   "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-    {
-      // label: "Bird",
-      // imgPath:
-      //   "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-  ];
-
-  console.log(`pokeList:`, pokeList)
+  let favArray = [];
 
   return (
     <>
       <div className="App">
-        <SearchAppBar title="PokeDex" />
+        <SearchAppBar title="Professor Haggerty's PokeDex" />
 
         <Switch>
           <Route
@@ -55,7 +61,12 @@ function App() {
             path={`/home`}
             render={(props) => <Home pokemonArray={pokeList} />}
           ></Route>
-          <Route exact path={`/pokemon`} component={Pokemon}></Route>
+          <Route
+            exact
+            path={`/pokemon`}
+            render={(props) => <Pokemon pokemonArray={pokeList2} />}
+          ></Route>
+          {/* <Route exact path={`/pokemon`} component={Pokemon}></Route> */}
           <Route exact path={`/favorites`} component={Favorites}></Route>
           <Route exact path={`/types`} component={Types}></Route>
           <Route exact path={`/cart`} component={Cart}></Route>

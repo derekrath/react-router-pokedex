@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import RecipeReviewCard from './RecipeReviewCard.js';
 
 
-export default function SpacingGrid({images}) {
+export default function SpacingGrid({pokemonCollection}) {
   const [spacing, setSpacing] = React.useState(2);
 
   const handleChange = (event) => {
@@ -14,13 +14,12 @@ export default function SpacingGrid({images}) {
 <Grid container spacing={${spacing}}>
 `;
 
-  console.log(`images:` , images)
-
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2}>
       <Grid item xs={12}>
         <Grid container justifyContent="center" spacing={spacing}>
-          {images.map((pokemon, value) => (
+          {pokemonCollection
+        .map((pokemon, value) => (
             <Grid key={value} item>
               <RecipeReviewCard pokemon={pokemon} />
             </Grid>

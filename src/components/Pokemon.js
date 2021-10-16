@@ -1,23 +1,32 @@
 import "./App.css";
-import {
-  NavLink,
-  Switch,
-  Route,
-  Redirect,
-  Link,
-  useRouteMatch,
-} from "react-router-dom";
-import Types from "./Types.js";
+import { NavLink, Link } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import SwipeableTextMobileStepper from "./SwipeableTextMobileStepper";
+import SpacingGrid from "./SpacingGrid.js";
+import { ContactlessOutlined } from "@mui/icons-material";
 
-const Pokemon = () => {
-  // let match = useRouteMatch();
-  // let {productId} = useParams();
+const Pokemon = ({pokemonArray}) => {
+  let pokemonList = [
+    {
+      label: "",
+      imgPath: "",
+    },
+  ];
+  if (pokemonArray !== null) {
+    pokemonList = pokemonArray;
+  }
 
   return (
     <>
-      <header className="Home-header">
-        <h1>All 150 Original Pokémon</h1>
+    <div className="Pokemon">
+      <header className="Pokemon-header">
+        <h1>Original 150 Pokémon</h1>
       </header>
+      <br></br>
+      <Grid container justifyContent="center" spacing={2}>
+      </Grid>
+      <SpacingGrid pokemonCollection={pokemonList} />
+    </div>
       <p>Pokémon Information:</p>
       <p>
         <Link exact to={`/types`}>

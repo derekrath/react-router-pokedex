@@ -26,50 +26,45 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeReviewCard({ pokemon }) {
+
   const [expanded, setExpanded] = React.useState(false);
-  const [dataObj, setDataObj] = React.useState({});
 
   function handleExpandClick() {
     setExpanded(!expanded);
-
-    async function getPokeInfo() {
-      let res = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${{ pokemon }["pokemon"]["name"]}`
-      );
-      let json = await res.json();
-      let spritesUrl = await json.sprites["back_default"];
-      let pokeName = await json.name;
-      let pokeId = await json.id;
-      let pokeMoves = await json.moves;
-      let pokeType = await json.types;
-      let pokeWeight = await json.weight;
-  
-      let Obj = {
-        sprite: spritesUrl,
-        name: pokeName,
-        id: pokeId,
-        moves: pokeMoves,
-        type: pokeType,
-        weight: pokeWeight,
-      };
-  
-      console.log("Obj call: ", {Obj});
-  
-      setDataObj({
-        dataObj: Obj
-      });
-  
-      console.log("Obj call: ", dataObj);
-  
-      return dataObj;
-    };
   };
 
-  // getPokeInfo
+  let pokemonObj= pokemon;
+  let spritesUrl= pokemonObj.sprites.front_default;
+  let pokeName = pokemonObj.name;
+    pokeName = pokeName.charAt(0).toUpperCase() + pokeName.slice(1);
+  let pokeId = pokemonObj.id;
+  let pokeMoves = [];
+  for (let e=0; e < pokemonObj.moves.length; e++) {
+    pokeMoves.push(pokemonObj.moves[e].move.name);
+  }
+  let pokeType = pokemonObj.types[0].type.name;
+  let pokeWeight = pokemonObj.weight;
+  let pokeHeight = pokemonObj.height;
+
+  let dataObj = {
+    sprite: spritesUrl,
+    name: pokeName,
+    id: pokeId,
+    moves: pokeMoves,
+    type: pokeType,
+    weight: pokeWeight,
+    height: pokeHeight,
+  };
+
+  if (dataObj.id < 10) {
+    dataObj.id = `0` + `${dataObj.id}`;
+  }
+  if (dataObj.id < 100) {
+    dataObj.id = `0` + `${dataObj.id}`;
+  }
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      {console.log("Data Obj: ", { dataObj })}
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -81,27 +76,16 @@ export default function RecipeReviewCard({ pokemon }) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={dataObj.name}
+        title={`${dataObj.name}`}
       />
       <CardMedia
         component="img"
         height="194"
-        image={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${dataObj.id}.png`}
+        image={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${dataObj.id}.png`}
         alt="Pokemon Image"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {`Type: ${dataObj.type} `}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {`ID: ${dataObj.id} `}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {`Moves: ${dataObj.moves}`}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {`Weight: ${dataObj.weight}`}
-        </Typography>
+        <></>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -118,10 +102,23 @@ export default function RecipeReviewCard({ pokemon }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{dataObj.moves}</Typography>
-          <Typography paragraph>{dataObj.moves}</Typography>
-          <Typography paragraph>{dataObj.moves}</Typography>
-          <Typography>{dataObj.moves}</Typography>
+        <Typography variant="body2" color="text.secondary">
+          {`ID: ${dataObj.id} `}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {`Type: ${dataObj.type} `}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {`Height: ${dataObj.height}`}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {`Weight: ${dataObj.weight}`}
+        </Typography>
+        <img src={ (dataObj.sprite) } />
+          {/* <Typography paragraph>{`Move-set:`}</Typography>
+          {dataObj.moves.map((move) => (
+              <Typography paragraph>{move}</Typography>
+          ))} */}
         </CardContent>
       </Collapse>
     </Card>
