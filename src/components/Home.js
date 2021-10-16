@@ -11,11 +11,9 @@ import { AppContext } from "./AppContext.js";
 // function Home({ pokemonArray }) {
   function Home() {
 
-  const {
-    list, setList,favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
-  } = useContext(AppContext);
-  console.log(`list:`, list)
-  const { pokeList1, pokeList2 } = list;
+    const {
+      pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
+    } = useContext(AppContext);
 
   let pokemonList = [
     {

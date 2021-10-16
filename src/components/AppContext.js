@@ -15,10 +15,16 @@ export const AppContext = createContext(null);
 
 function AppProvider({children}) {
 
-    const [list, setList] = useState({
-        pokeList1: [],
-        pokeList2: [],
-    });
+    // const [list1, setList1] = useState({
+    //     pokeList1: [],
+    // });
+
+    // const [list2, setList2] = useState({
+    //     pokeList2: [],
+    // });
+
+    const [pokeList1, setList1] = useState([]);
+    const [pokeList2, setList2] = useState([]);
 
     const [favorites, setFavorites] = useState([]);
 
@@ -46,41 +52,37 @@ function AppProvider({children}) {
             for (let i=1; i < 11; i++){
             const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
             const data = await getJSON(res);
-            setList((prevState) => ({
-                pokeList1: [...prevState.pokeList1, data]
-            }));
+            setList1((prevState) => ([...prevState, data]));
             }
         }
         fetchPokemonList1();
     }, []);
 
-    // useEffect(() => {
-    //     let isMounted = true
-    //     async function fetchPokemonList2() {
-    //         for (let i=1; i < 152; i++){
-    //         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-    //         const data = await getJSON(res);
-    //         setList((prevState) => ({
-    //             pokeList2: [...prevState.pokeList2, data]
-    //         }));
-    //         }
-    //     }
-    //     fetchPokemonList2();
-    // }, []);
-
-    const { pokeList1, pokeList2 } = list;
-    console.log(`your pokeList is created in list`, pokeList1)
-    console.log(`list:`, list)
+    useEffect(() => {
+        let isMounted = true
+        async function fetchPokemonList2() {
+            for (let i=1; i < 152; i++){
+            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+            const data = await getJSON(res);
+            setList2((prevState) => ([...prevState, data]));
+            }
+        }
+        fetchPokemonList2();
+    }, []);
 
     const valueObj = {
-        list,
-        setList,
+        pokeList1,
+        pokeList2,
+        setList1,
+        setList2,
         favorites,
         setFavorites,
         addFavorite, 
         removeFavorite, 
         isFavorite
     };
+
+    console.log(`pokeList1`, pokeList1)
 
     return (
     // <>

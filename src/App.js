@@ -14,9 +14,8 @@ import { AppContext } from "./components/AppContext.js";
 function App() {
 
   const {
-    list, setList,favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
+    pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
   } = useContext(AppContext);
-  const { pokeList1, pokeList2 } = list;
 
   return (
     <>

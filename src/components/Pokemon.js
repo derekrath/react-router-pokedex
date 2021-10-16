@@ -4,16 +4,23 @@ import Grid from "@mui/material/Grid";
 import SwipeableTextMobileStepper from "./SwipeableTextMobileStepper";
 import SpacingGrid from "./SpacingGrid.js";
 import { ContactlessOutlined } from "@mui/icons-material";
+import { useState, useEffect, useContext, createContext } from "react";
+import { AppContext } from "./AppContext.js";
 
-const Pokemon = ({pokemonArray}) => {
+const Pokemon = () => {
+
+  const {
+    pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
+  } = useContext(AppContext);
+
   let pokemonList = [
     {
       label: "",
       imgPath: "",
     },
   ];
-  if (pokemonArray !== null) {
-    pokemonList = pokemonArray;
+  if (pokeList2 !== null) {
+    pokemonList = pokeList2;
   }
 
   return (
