@@ -34,7 +34,7 @@ const ExpandMore = styled((props) => {
     const [expanded, setExpanded] = useState(false);
 
     const {
-      pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
+      pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, isFav, setIsFav, addFavorite, removeFavorite
     } = useContext(AppContext);
     
     let pokemonObj= pokeObj.pokemon;
@@ -67,15 +67,11 @@ const ExpandMore = styled((props) => {
       dataObj.id = `0` + `${dataObj.id}`;
     }
 
-    // let favorites = useContext(favorites);
-    // let removeFavorite = useContext(favContext.removeFavorite);
-    // let addFavorite = useContext(favContext.addFavorite);
-
     function handleChange(){
-      if (favorites.includes(pokemonObj.name)) {
-        favorites.removeFavorite(pokemonObj.name)
+      if (favorites.some(e => e.name === pokemonObj.name)) {
+        removeFavorite(pokemonObj);
       } else {
-        favorites.addFavorite(pokemonObj.name)
+        addFavorite(pokemonObj);
       }
     }
 
@@ -87,8 +83,8 @@ const ExpandMore = styled((props) => {
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              P
+            <Avatar sx={{ bgcolor: red[200] }} aria-label="recipe">
+              {dataObj.id}
             </Avatar>
           }
           action={
@@ -108,10 +104,10 @@ const ExpandMore = styled((props) => {
           <></>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton 
-            onClick={handleChange}
+          <IconButton
+            onClick={() => handleChange()}
             aria-label="add to favorites">
-            <FavoriteIcon />
+            <FavoriteIcon style={{ color: ( isFav.includes(pokemonObj.name) ) ? "pink" : "none" }} />          
           </IconButton>
           <ExpandMore
             expand={expanded}
@@ -137,10 +133,10 @@ const ExpandMore = styled((props) => {
             {`Weight: ${dataObj.weight}`}
           </Typography>
           <img src={ (dataObj.sprite) } />
-            {/* <Typography paragraph>{`Move-set:`}</Typography>
-            {dataObj.moves.map((move) => (
-                <Typography paragraph>{move}</Typography>
-            ))} */}
+          {/* <Typography paragraph>{`Move-set:`}</Typography>
+          {dataObj.moves.map((move) => (
+            <Typography paragraph>{move}</Typography>
+          ))} */}
           </CardContent>
         </Collapse>
       </Card>

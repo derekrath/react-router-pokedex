@@ -10,7 +10,7 @@ import { AppContext } from "./AppContext.js";
 const Pokemon = () => {
 
   const {
-    pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
+    pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, isFav, setIsFav, addFavorite, removeFavorite
   } = useContext(AppContext);
 
   let pokemonList = [

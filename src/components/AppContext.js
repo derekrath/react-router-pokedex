@@ -1,45 +1,39 @@
 import * as React from "react";
 import "./App.css";
-import Home from "./Home.js";
-import Pokemon from "./Pokemon.js";
-import Types from "./Types.js";
-import Favorites from "./Favorites.js";
-import Cart from "./Cart.js";
-import { Switch, Redirect, Route } from "react-router-dom";
-import SearchAppBar from "./SearchAppBar.js";
-import { useState, useEffect, useContext, createContext } from "react";
-import RecipeReviewCard from "./RecipeReviewCard";
-import App from "../App.js";
+// import Home from "./Home.js";
+// import Pokemon from "./Pokemon.js";
+// import Types from "./Types.js";
+// import Favorites from "./Favorites.js";
+// import Cart from "./Cart.js";
+// import { Switch, Redirect, Route } from "react-router-dom";
+// import SearchAppBar from "./SearchAppBar.js";
+import { useState, useEffect, createContext } from "react";
+// import RecipeReviewCard from "./RecipeReviewCard";
+// import App from "../App.js";
 
 export const AppContext = createContext(null);
 
 function AppProvider({children}) {
 
-    // const [list1, setList1] = useState({
-    //     pokeList1: [],
-    // });
-
-    // const [list2, setList2] = useState({
-    //     pokeList2: [],
-    // });
-
     const [pokeList1, setList1] = useState([]);
     const [pokeList2, setList2] = useState([]);
-
     const [favorites, setFavorites] = useState([]);
+    const [isFav, setIsFav] = useState([]);
 
-
-    function addFavorite(pokeName){
-        setFavorites([...favorites, {pokeName}]);
+    function addFavorite(pokemonObj){
+        if (!favorites.includes(pokemonObj)) {
+            setFavorites(favorites.concat(pokemonObj));
+            setIsFav(isFav.concat(pokemonObj.name));
+        } 
     }
 
-    function removeFavorite(pokeName){
-        setFavorites(favorites.filter(favorite => favorite.name !== pokeName))
-    }
-
-    function isFavorite(pokeName) {
-        let isFavorite = favorites.some(favorite => favorite.pokeName === pokeName)
-        return (isFavorite)
+    function removeFavorite(pokemonObj){
+        let index = favorites.indexOf(pokemonObj);
+        let temp = [...favorites.slice(0, index), ...favorites.slice(index + 1)];
+        setFavorites(temp);
+        let index2 = isFav.indexOf(pokemonObj.name);
+        let temp2 = [...isFav.slice(0, index2), ...isFav.slice(index2 + 1)];
+        setIsFav(temp2);
     }
 
     function getJSON(res) {
@@ -77,27 +71,18 @@ function AppProvider({children}) {
         setList2,
         favorites,
         setFavorites,
+        isFav,
+        setIsFav,
         addFavorite, 
-        removeFavorite, 
-        isFavorite
+        removeFavorite,
     };
 
-    console.log(`pokeList1`, pokeList1)
-
     return (
-    // <>
         <div className="App-provider">
-        {/* <AppContext.Provider value={list1Context, list2Context, favoritesContext, favFuncContext}> */}
             <AppContext.Provider value={valueObj}>
                 {children}
-                {/* <App />
-                <Pokemon />
-                <Home />
-                <Favorites />
-                <RecipeReviewCard /> */}
             </AppContext.Provider>
         </div>
-    // </>
     );
 }
 

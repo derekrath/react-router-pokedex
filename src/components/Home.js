@@ -8,11 +8,10 @@ import App from "../App.js";
 import { useState, useEffect, useContext, createContext } from "react";
 import { AppContext } from "./AppContext.js";
 
-// function Home({ pokemonArray }) {
   function Home() {
 
     const {
-      pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
+      pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, isFav, setIsFav, addFavorite, removeFavorite
     } = useContext(AppContext);
 
   let pokemonList = [
@@ -30,10 +29,8 @@ import { AppContext } from "./AppContext.js";
       <header className="Home-header">
         <h1>Professor Haggerty's Pokédex</h1>
       </header>
-      <p>First 10 Original Pokémon!</p>
+      <p>First 10 Starter Pokémon!</p>
       <br></br>
-
-      {/* should probably add buttons to the cards to set favorites- use heart/ thumb icon?  */}
       <Grid container justifyContent="center" spacing={2}>
         {/* <SwipeableTextMobileStepper pokemonCollection={pokemonList} /> */}
       </Grid>
