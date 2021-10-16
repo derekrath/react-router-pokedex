@@ -7,72 +7,41 @@ import Favorites from "./components/Favorites.js";
 import Cart from "./components/Cart.js";
 import { Switch, Redirect, Route } from "react-router-dom";
 import SearchAppBar from "./components/SearchAppBar.js";
-import { useState, useEffect } from "react";
-
-//var pokemonArray = React.createContext();
+import { useState, useEffect, useContext, createContext } from "react";
+import RecipeReviewCard from "./components/RecipeReviewCard";
+import { AppContext } from "./components/AppContext.js";
 
 function App() {
-  // const [pokeList, setPokeList] = useState(null);
 
-  // useEffect(() => {
-  // async function getPokemonSubset() {
-    let pokeList = [];
-    for (let i=1; i < 11; i++){
-      fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        pokeList.push(data);
-        return pokeList;
-      });
-      // setPokeList(pokeList);
-    }
-    console.log(`pokeList: `, pokeList)
-
-    let pokeList2 = [];
-    for (let j=1; j < 152; j++){
-      fetch(`https://pokeapi.co/api/v2/pokemon/${j}`)
-      .then((res2) => {
-        return res2.json();
-      })
-      .then((data2) => {
-        pokeList2.push(data2);
-        return pokeList2;
-      });
-      // setPokeList(pokeList);
-    }
-    // console.log(`pokeList:`, pokeList)
-    // return pokeList;
-  // };
-  // getPokemonSubset();
-  // }, []);
-
-  let favArray = [];
+  const {
+    list, setList,favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
+  } = useContext(AppContext);
+  const { pokeList1, pokeList2 } = list;
 
   return (
     <>
       <div className="App">
+        {/* <AppContext.Provider value={list1Context, list2Context, favoritesContext, favFuncContext}> */}
         <SearchAppBar title="Professor Haggerty's PokeDex" />
-
         <Switch>
-          <Route
+          {/* <Route
             exact
             path={`/home`}
-            render={(props) => <Home pokemonArray={pokeList} />}
-          ></Route>
-          <Route
+            render={(props) => <Home pokeList={pokeList1} />}
+          ></Route> */}
+          <Route exact path={`/home`} component={Home}></Route>
+          {/* <Route
             exact
             path={`/pokemon`}
-            render={(props) => <Pokemon pokemonArray={pokeList2} />}
-          ></Route>
-          {/* <Route exact path={`/pokemon`} component={Pokemon}></Route> */}
-          <Route exact path={`/favorites`} component={Favorites}></Route>
+            render={(props) => <Pokemon pokeList={pokeList2} />}
+          ></Route> */}
+          <Route exact path={`/pokemon`} component={Pokemon}></Route>
           <Route exact path={`/types`} component={Types}></Route>
           <Route exact path={`/cart`} component={Cart}></Route>
-          <Route exact path={`/favorites`}
-            render={(props) => <Favorites favArray={favArray} />}
-          />
+          <Route exact path={`/favorites`} component={Favorites}></Route>
+          {/* <Route exact path={`/favorites`}
+            render={(props) => <Favorites favorites={favorites} />}
+          /> */}
           <Redirect to={`/home`} />
         </Switch>
       </div>

@@ -4,8 +4,18 @@ import Grid from "@mui/material/Grid";
 import SwipeableTextMobileStepper from "./SwipeableTextMobileStepper";
 import SpacingGrid from "./SpacingGrid.js";
 import { ContactlessOutlined } from "@mui/icons-material";
+import App from "../App.js";
+import { useState, useEffect, useContext, createContext } from "react";
+import { AppContext } from "./AppContext.js";
 
-function Home({ pokemonArray }) {
+// function Home({ pokemonArray }) {
+  function Home() {
+
+  const {
+    list, setList,favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
+  } = useContext(AppContext);
+  console.log(`list:`, list)
+  const { pokeList1, pokeList2 } = list;
 
   let pokemonList = [
     {
@@ -13,8 +23,8 @@ function Home({ pokemonArray }) {
       imgPath: "",
     },
   ];
-  if (pokemonArray !== null) {
-    pokemonList = pokemonArray;
+  if (pokeList1 !== null) {
+    pokemonList = pokeList1;
   }
 
   return (
