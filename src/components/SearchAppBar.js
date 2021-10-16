@@ -99,7 +99,7 @@ export default function SearchAppBar({ title }) {
             <MenuIcon />
           </IconButton>
           <Stack direction="row" spacing={2}>
-            <Link exact to={`/home`}>
+            <Link to={`/home`}>
               <Button
                 variant="outlined"
                 color="inherit"
@@ -108,7 +108,7 @@ export default function SearchAppBar({ title }) {
                 Home
               </Button>
             </Link>
-            <Link exact to={`/pokemon`}>
+            <Link to={`/pokemon`}>
               <Button
                 variant="outlined"
                 color="inherit"
@@ -117,7 +117,7 @@ export default function SearchAppBar({ title }) {
                 Pokémon
               </Button>
             </Link>
-            <Link exact to={`/favorites`}>
+            <Link to={`/favorites`}>
               <Button
                 variant="outlined"
                 color="inherit"
@@ -126,7 +126,7 @@ export default function SearchAppBar({ title }) {
                 Favorites
               </Button>
             </Link>
-            <Link exact to={`/cart`}>
+            <Link to={`/cart`}>
               <Button
                 variant="outlined"
                 color="inherit"

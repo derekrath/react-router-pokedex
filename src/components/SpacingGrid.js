@@ -1,9 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import RecipeReviewCard from './RecipeReviewCard.js';
-import App from "../App.js";
-import { useState, useEffect, useContext, createContext } from "react";
-import { AppContext } from "./AppContext.js";
 
 
 export default function SpacingGrid({pokemonCollection}) {

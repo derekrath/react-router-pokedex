@@ -1,10 +1,8 @@
 import "./App.css";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import SwipeableTextMobileStepper from "./SwipeableTextMobileStepper";
 import SpacingGrid from "./SpacingGrid.js";
-import { ContactlessOutlined } from "@mui/icons-material";
-import { useState, useEffect, useContext, createContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "./AppContext.js";
 
 const Pokemon = () => {

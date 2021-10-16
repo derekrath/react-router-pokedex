@@ -1,11 +1,4 @@
 import "./App.css";
-import {
-  NavLink,
-  Switch,
-  Route,
-  Redirect,
-  useRouteMatch,
-} from "react-router-dom";
 
 const Types = () => {
   // let match = useRouteMatch();

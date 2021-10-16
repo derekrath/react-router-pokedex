@@ -13,8 +13,7 @@ import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useState, useEffect, useContext, createContext } from "react";
-import App from "../App.js";
+import { useState, useContext } from "react";
 import { AppContext } from "./AppContext.js";
 
 const ExpandMore = styled((props) => {
@@ -28,7 +27,6 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-// export default function RecipeReviewCard({ pokemon }) {
   export default function RecipeReviewCard(pokeObj) {
 
     const [expanded, setExpanded] = useState(false);

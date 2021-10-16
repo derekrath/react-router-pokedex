@@ -1,15 +1,6 @@
 import * as React from "react";
 import "./App.css";
-// import Home from "./Home.js";
-// import Pokemon from "./Pokemon.js";
-// import Types from "./Types.js";
-// import Favorites from "./Favorites.js";
-// import Cart from "./Cart.js";
-// import { Switch, Redirect, Route } from "react-router-dom";
-// import SearchAppBar from "./SearchAppBar.js";
 import { useState, useEffect, createContext } from "react";
-// import RecipeReviewCard from "./RecipeReviewCard";
-// import App from "../App.js";
 
 export const AppContext = createContext(null);
 

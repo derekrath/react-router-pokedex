@@ -7,8 +7,7 @@ import Favorites from "./components/Favorites.js";
 import Cart from "./components/Cart.js";
 import { Switch, Redirect, Route } from "react-router-dom";
 import SearchAppBar from "./components/SearchAppBar.js";
-import { useState, useEffect, useContext, createContext } from "react";
-import RecipeReviewCard from "./components/RecipeReviewCard";
+import {useContext } from "react";
 import { AppContext } from "./components/AppContext.js";
 
 function App() {
@@ -28,16 +27,16 @@ function App() {
             path={`/home`}
             render={(props) => <Home pokeList={pokeList1} />}
           ></Route> */}
-          <Route exact path={`/home`} component={Home}></Route>
+          <Route path={`/home`} component={Home}></Route>
           {/* <Route
             exact
             path={`/pokemon`}
             render={(props) => <Pokemon pokeList={pokeList2} />}
           ></Route> */}
-          <Route exact path={`/pokemon`} component={Pokemon}></Route>
-          <Route exact path={`/types`} component={Types}></Route>
-          <Route exact path={`/cart`} component={Cart}></Route>
-          <Route exact path={`/favorites`} component={Favorites}></Route>
+          <Route path={`/pokemon`} component={Pokemon}></Route>
+          <Route path={`/types`} component={Types}></Route>
+          <Route path={`/cart`} component={Cart}></Route>
+          <Route path={`/favorites`} component={Favorites}></Route>
           {/* <Route exact path={`/favorites`}
             render={(props) => <Favorites favorites={favorites} />}
           /> */}

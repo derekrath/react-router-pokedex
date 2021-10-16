@@ -1,11 +1,7 @@
 import "./App.css";
-import { NavLink } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import SwipeableTextMobileStepper from "./SwipeableTextMobileStepper";
 import SpacingGrid from "./SpacingGrid.js";
-import { ContactlessOutlined } from "@mui/icons-material";
-import App from "../App.js";
-import { useState, useEffect, useContext, createContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "./AppContext.js";
 
 const Favorites = () => {
