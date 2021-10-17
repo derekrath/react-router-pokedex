@@ -8,9 +8,7 @@ import { AppContext } from "./AppContext.js";
 
   function Home() {
 
-    const {
-      pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, isFav, setIsFav, addFavorite, removeFavorite
-    } = useContext(AppContext);
+    const { pokeList1 } = useContext(AppContext);
 
   let pokemonList = [
     {
@@ -27,7 +25,7 @@ import { AppContext } from "./AppContext.js";
       <header className="Home-header">
         <h1>Professor Haggerty's Pokédex</h1>
       </header>
-      <p>First 10 Starter Pokémon!</p>
+      <p>First 4 Starter Pokémon!</p>
       <br></br>
       <Grid container justifyContent="center" spacing={2}>
         {/* <SwipeableTextMobileStepper pokemonCollection={pokemonList} /> */}

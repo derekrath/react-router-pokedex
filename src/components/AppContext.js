@@ -34,10 +34,16 @@ function AppProvider({children}) {
     useEffect(() => {
         let isMounted = true
         async function fetchPokemonList1() {
-            for (let i=1; i < 11; i++){
-            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-            const data = await getJSON(res);
-            setList1((prevState) => ([...prevState, data]));
+            // for (let i=1; i < 10; i++){
+            // const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+            // const data = await getJSON(res);
+            // setList1((prevState) => ([...prevState, data]));
+            // }
+            let pokeArray = [1,4,7,152,155,158,252,255,258,387,390,393]
+            for (let i of pokeArray){
+                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+                const data = await getJSON(res);
+                setList1((prevState) => ([...prevState, data]));
             }
         }
         fetchPokemonList1();

@@ -6,9 +6,7 @@ import { AppContext } from "./AppContext.js";
 
 const Favorites = () => {
 
-  const {
-    pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, isFav, setIsFav, addFavorite, removeFavorite
-  } = useContext(AppContext);
+  const { favorites } = useContext(AppContext);
 
   return (
     <div className="Favorites">

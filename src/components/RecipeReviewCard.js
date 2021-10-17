@@ -31,9 +31,7 @@ const ExpandMore = styled((props) => {
 
     const [expanded, setExpanded] = useState(false);
 
-    const {
-      pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, isFav, setIsFav, addFavorite, removeFavorite
-    } = useContext(AppContext);
+    const { favorites, isFav, setIsFav, addFavorite, removeFavorite } = useContext(AppContext);
     
     let pokemonObj= pokeObj.pokemon;
     let spritesUrl= pokemonObj.sprites.front_default;
@@ -105,7 +103,7 @@ const ExpandMore = styled((props) => {
           <IconButton
             onClick={() => handleChange()}
             aria-label="add to favorites">
-            <FavoriteIcon style={{ color: ( isFav.includes(pokemonObj.name) ) ? "pink" : "none" }} />          
+            <FavoriteIcon style={{ color: ( isFav.includes(pokemonObj.name) ) ?"pink" : "lightgray" }} />          
           </IconButton>
           <ExpandMore
             expand={expanded}
@@ -130,11 +128,14 @@ const ExpandMore = styled((props) => {
           <Typography variant="body2" color="text.secondary">
             {`Weight: ${dataObj.weight}`}
           </Typography>
-          <img src={ (dataObj.sprite) } />
-          {/* <Typography paragraph>{`Move-set:`}</Typography>
+          <img src={ (dataObj.sprite) } alt="sprite" />
           {dataObj.moves.map((move) => (
-            <Typography paragraph>{move}</Typography>
-          ))} */}
+            <div>
+            {( isFav.includes(pokemonObj.name) ) ?
+              move : null
+            }
+            </div>
+          ))}
           </CardContent>
         </Collapse>
       </Card>

@@ -7,14 +7,8 @@ import Favorites from "./components/Favorites.js";
 import Cart from "./components/Cart.js";
 import { Switch, Redirect, Route } from "react-router-dom";
 import SearchAppBar from "./components/SearchAppBar.js";
-import {useContext } from "react";
-import { AppContext } from "./components/AppContext.js";
 
 function App() {
-
-  const {
-    pokeList1, pokeList2, setList1,setList2, favorites, setFavorites, addFavorite, removeFavorite, isFavorite 
-  } = useContext(AppContext);
 
   return (
     <>
